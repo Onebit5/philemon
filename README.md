@@ -69,7 +69,8 @@ a release is a tag, `vX.Y.Z`, cut from `master` and never moved once it is pushe
 tree that boots with philemon names a release by its version alone, so a tag that moved
 would hand it a different loader under the same name. the major number moves when the
 handoff or the table on the disk changes in a way an older kernel or an older image would
-notice. [CHANGELOG.md](CHANGELOG.md) has every version.
+notice. [CHANGELOG.md](CHANGELOG.md) has every version, and [ROADMAP.md](ROADMAP.md) the
+ones to come.
 
 ## contributing
 
