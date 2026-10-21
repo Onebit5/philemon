@@ -1,0 +1,13 @@
+#!/bin/sh
+# the style lint, over what is about to be committed, so a commit the ci
+# would turn away is turned away here first. once per clone:
+#
+#   git config core.hooksPath tools/hooks
+#
+# naming is a warning and does not stop a commit, for the reason in
+# NAMING_STYLE.md; everything else the lint calls an error does.
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- \
+        '*.c' '*.h' 'tools/*.py' 'tools/*.sh')
+[ -n "$files" ] || exit 0
+exec python3 tools/lint.py $files
