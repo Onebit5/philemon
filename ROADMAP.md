@@ -17,7 +17,7 @@ a system that builds and installs its own kernels needs two things from the
 loader: a way to say which kernel to start, and a way back when the one it
 said does not come up.
 
-**1.0.1 the early struct, checked.** the assembly writes `struct ph_early`
+**1.0.2 the early struct, checked.** the assembly writes `struct ph_early`
 field by field and stores `boot_drive` at 108, where the C struct puts it
 at 112; nothing reads the field yet, which is the only reason nothing has
 broken. the writers' agreement check covers the boot table and not this

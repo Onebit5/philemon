@@ -9,6 +9,16 @@ changelogs, written when it happened, and it stays there.
 
 ---
 
+- **1.0.1**: a loader for any x86_64. the 64-bit half was built for
+  whatever cpu gcc assumed, and the gcc in ubuntu's amd64v3 archive
+  assumes bmi2 and avx2. velvet's boot test, on ubuntu 26.04, stopped at
+  `kernel at 0x`: the first shift by a variable was a `shrx`, qemu's
+  default cpu has none, and with no idt yet the machine reset without a
+  word. `-march=x86-64` says which machine he is for, and a gcc whose
+  default is already that builds him to the same bytes as 1.0.0.
+
+  the early struct's check, the plan's 1.0.1, is 1.0.2 now.
+
 - **1.0.0**: philemon on his own. the loader is the one velvet 0.4.3
   booted with, and the two halves build to the same bytes they did there.
   what moved is where it lives: `src/` and `include/` instead of `boot/`
