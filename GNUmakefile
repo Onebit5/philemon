@@ -32,10 +32,16 @@ OBJCOPY := objcopy
 
 # the 64-bit half runs before anything has set up the fpu or a stack
 # with a red zone anybody would honour, and at the address the linker
-# script gives it rather than wherever a loader would like
+# script gives it rather than wherever a loader would like.
+#
+# and on any x86_64 at all. what gcc assumes by default is its
+# distribution's choice: ubuntu's amd64v3 archive builds one that
+# assumes bmi2 and avx2, a cpu from 2013 on, and a loader built with it
+# stops at its first shrx on anything older, qemu's default cpu
+# included, with no idt yet to say why
 CFLAGS := -std=gnu11 -ffreestanding -fno-pic -fno-stack-protector \
-          -mno-red-zone -mno-sse -mno-mmx -mno-80387 -mcmodel=small \
-          -Wall -Wextra -O2 -Iinclude
+          -march=x86-64 -mno-red-zone -mno-sse -mno-mmx -mno-80387 \
+          -mcmodel=small -Wall -Wextra -O2 -Iinclude
 
 HOSTFLAGS := -std=gnu11 -Wall -Wextra -g -Iinclude
 
